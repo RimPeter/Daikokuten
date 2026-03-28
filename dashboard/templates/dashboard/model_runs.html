@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Model Runs</h2>
+<p>Review persisted model run history and open each run for prediction details.</p>
+{% if model_runs %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Created</th>
+                <th>Predictions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for run in model_runs %}
+            <tr>
+                <td><a href="{% url 'dashboard:model_run_detail' run.id %}">{{ run.name }}</a></td>
+                <td>{{ run.version }}</td>
+                <td>{{ run.created_at|date:'Y-m-d H:i:s' }}</td>
+                <td>{{ run.predictions.count }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No model runs recorded yet.</p>
+{% endif %}
+{% endblock %}

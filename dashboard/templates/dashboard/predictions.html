@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Predictions</h2>
+{% if predictions %}
+    <table>
+        <thead>
+            <tr>
+                <th>Market</th>
+                <th>Runner</th>
+                <th>Model Run</th>
+                <th>Probability</th>
+                <th>Odds</th>
+                <th>Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entry in predictions %}
+            <tr>
+                <td><a href="{% url 'dashboard:market_detail' entry.market.market_id %}">{{ entry.market.market_id }}</a></td>
+                <td>{{ entry.prediction.runner_id }}</td>
+                <td><a href="{% url 'dashboard:model_run_detail' entry.model_run.id %}">{{ entry.model_run.name }}</a></td>
+                <td>{{ entry.prediction.predicted_probability|floatformat:2 }}</td>
+                <td>{{ entry.prediction.predicted_odds }}</td>
+                <td>{{ entry.prediction.inference_time|date:'Y-m-d H:i:s' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No predictions available yet.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Upcoming Tennis Markets</h2>
+{% if markets %}
+    <ul>
+    {% for market in markets %}
+        <li>
+            <a href="{% url 'dashboard:market_detail' market.market_id %}">{{ market.market_id }}</a>
+            - {{ market.market_type }}
+            - {{ market.event.event_id }}
+            - {{ market.market_time|date:'Y-m-d H:i' }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No upcoming markets found.</p>
+{% endif %}
+{% endblock %}
