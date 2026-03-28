@@ -1,29 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Model Runs</h2>
-<p>Review persisted model run history and open each run for prediction details.</p>
-{% if model_runs %}
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Version</th>
-                <th>Created</th>
-                <th>Predictions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for run in model_runs %}
-            <tr>
-                <td><a href="{% url 'dashboard:model_run_detail' run.id %}">{{ run.name }}</a></td>
-                <td>{{ run.version }}</td>
-                <td>{{ run.created_at|date:'Y-m-d H:i:s' }}</td>
-                <td>{{ run.predictions.count }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>No model runs recorded yet.</p>
-{% endif %}
+<section style="padding: 2rem 0;">
+    <div style="max-width: 900px; margin: 0 auto; color: #eef2ff;">
+        <h2>Model Runs</h2>
+        <p>Track generated model runs, view version history, and inspect inference performance.</p>
+        <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;">
+            <p style="margin: 0.5rem 0; color: #b8c6de;">Model run summaries will appear here once the system starts recording runs.</p>
+        </div>
+    </div>
+</section>
 {% endblock %}

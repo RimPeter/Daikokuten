@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Upcoming Tennis Markets</h2>
-{% if markets %}
-    <ul>
-    {% for market in markets %}
-        <li>
-            <a href="{% url 'dashboard:market_detail' market.market_id %}">{{ market.market_id }}</a>
-            - {{ market.market_type }}
-            - {{ market.event.event_id }}
-            - {{ market.market_time|date:'Y-m-d H:i' }}
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No upcoming markets found.</p>
-{% endif %}
+<section style="padding: 2rem 0;">
+    <div style="max-width: 900px; margin: 0 auto; color: #e8eef8;">
+        <h2 style="margin-bottom: 1rem; font-size: clamp(2rem, 3vw, 2.75rem);">Dashboard Home</h2>
+        <p style="margin-bottom: 1.5rem; line-height: 1.75; color: #c8d4ee;">Welcome to BetLab. Use the navigation links to explore upcoming markets, review predictions, and inspect model run history.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <a href="{% url 'dashboard:upcoming_markets' %}" style="padding: 0.85rem 1.25rem; border-radius: 999px; background: #4f89ff; color: white; text-decoration: none;">Upcoming Markets</a>
+            <a href="{% url 'dashboard:predictions' %}" style="padding: 0.85rem 1.25rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: #eef4ff; text-decoration: none;">Predictions</a>
+            <a href="{% url 'dashboard:model_runs' %}" style="padding: 0.85rem 1.25rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: #eef4ff; text-decoration: none;">Model Runs</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

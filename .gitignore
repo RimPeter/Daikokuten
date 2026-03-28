@@ -1,16 +1,4 @@
-.venv/
-__pycache__/
-*.pyc
-db.sqlite3
-.env
-.idea/
-.vscode/
-.coverage
-htmlcov/
-.pytest_cache/
-media/
-staticfiles/
-*.log
 data.tar
 notes.txt
 betlab_django_project_blueprint.md
+venv28032026

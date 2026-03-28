@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
-from decouple import Csv, config
-from dj_database_url import parse as db_url
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,23 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me')
+SECRET_KEY = 'django-insecure-t4=ahguy8fv*9vrl!2hm7v7x@!8c!cwcud6e%%6kp)yxv=9lg5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=Csv())
-
-DATABASE_URL = config('DATABASE_URL', default='')
-DATABASES = db_url(DATABASE_URL, conn_max_age=600) if DATABASE_URL else {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
-CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -51,14 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
-    'core',
-    'markets',
-    'ingestion',
-    'features',
-    'modelling',
     'dashboard',
-    'backtesting',
 ]
 
 MIDDLEWARE = [
@@ -87,8 +66,6 @@ TEMPLATES = [
         },
     },
 ]
-
-STATICFILES_DIRS = [BASE_DIR / 'static']
 
 WSGI_APPLICATION = 'Daikokuten.wsgi.application'
 

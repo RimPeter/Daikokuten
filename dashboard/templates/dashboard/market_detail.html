@@ -1,54 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if error %}
-    <p>{{ error }}</p>
-{% else %}
-    <h2>Market {{ market.market_id }}</h2>
-    <p>Market type: {{ market.market_type }}</p>
-    <p>Event: {{ market.event.event_id }} ({{ market.event.name }})</p>
-    <p>Start time: {{ market.market_time|date:'Y-m-d H:i' }}</p>
-    <p>Suspend time: {{ market.suspend_time|date:'Y-m-d H:i' }}</p>
-    <p>In play: {{ market.in_play }}</p>
-
-    {% if latest_snapshot %}
-        <h3>Latest Snapshot</h3>
-        <p>Snapshot at: {{ latest_snapshot.timestamp|date:'Y-m-d H:i:s' }}</p>
-        <h4>Runner prices</h4>
-        <table>
-            <thead>
-                <tr><th>Runner</th><th>Selection ID</th><th>Last Price Traded</th></tr>
-            </thead>
-            <tbody>
-            {% for runner in runners %}
-                <tr>
-                    <td>{{ runner.name }}</td>
-                    <td>{{ runner.runner_id }}</td>
-                    <td>{{ runner.last_price_traded }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <h4>Predictions</h4>
-        {% if predictions %}
-            <table>
-                <thead>
-                    <tr><th>Runner</th><th>Probability</th><th>Odds</th></tr>
-                </thead>
-                <tbody>
-                {% for pred in predictions %}
-                    <tr>
-                        <td>{{ pred.runner_name or pred.runner_id }}</td>
-                        <td>{{ pred.predicted_probability|floatformat:2 }}</td>
-                        <td>{{ pred.predicted_odds }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No predictions available for this market yet.</p>
-        {% endif %}
-    {% else %}
-        <p>No snapshot available for this market.</p>
-    {% endif %}
-{% endif %}
+<section style="padding: 2rem 0;">
+    <div style="max-width: 900px; margin: 0 auto; color: #eef2ff;">
+        <h2>Market Detail</h2>
+        <p>Information for market <strong>{{ market_id }}</strong> would be shown here.</p>
+        <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;">
+            <p style="margin: 0.5rem 0; color: #b8c6de;">Detailed runner data, latest snapshot values, and predictions belong in this view.</p>
+        </div>
+    </div>
+</section>
 {% endblock %}
